@@ -16,34 +16,23 @@ stages:
   - check
   - build
 
-variables:
-  PNPM_HOME: .pnpm-home
-  PNPM_STORE_DIR: .pnpm-store
-
 cache:
-  key: pnpm-$CI_COMMIT_REF_SLUG
+  key: npm-$CI_COMMIT_REF_SLUG
   paths:
     - node_modules/
-    - .pnpm-home/
-    - .pnpm-store/
 
 before_script:
-  - export PNPM_HOME="$CI_PROJECT_DIR/$PNPM_HOME"
-  - export PATH="$PNPM_HOME:$PATH"
-  - corepack enable
-  - corepack prepare pnpm@10.5.0 --activate
-  - pnpm config set store-dir $PNPM_STORE_DIR
-  - pnpm install --frozen-lockfile
+  - npm install --ignore-scripts
 
 check:
   stage: check
   script:
-    - pnpm check
+    - npm run check
 
 build:
   stage: build
   script:
-    - pnpm build
+    - npm run build
   artifacts:
     paths:
       - dist/
