@@ -53,6 +53,17 @@ node --import tsx scripts/build-themes.ts
 - `/* @size 16:9 1280px 720px */`
 - `/* @size 4:3 960px 720px */`
 
+## GitLab CI
+
+GitLab CI 使用 `latex-runner` 标签匹配当前可用的 shared runner。runner 不接收 untagged jobs，因此新增 job 时需要保留这个标签配置。
+
+CI 会在 push、merge request、tag 和网页手动触发时创建流水线。普通开发提交只做轻量检查和构建；COS 发布仍使用本地 `sync:cos` 命令，不会在普通 push 中自动执行。
+
+流水线包含：
+
+- `check`: 运行 `pnpm check`，构建主题 CSS 作为标准检查。
+- `build`: 运行 `pnpm build`，并保存 `dist/` 作为一周有效的 artifact。
+
 ## 发布到 COS
 
 本地可用 `secret.yaml` 或环境变量提供凭据，优先读取 `secret.yaml`。
