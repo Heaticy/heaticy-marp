@@ -136,7 +136,7 @@ pre {
   padding: 28px;
   border: 1px solid var(--color-divider);
   border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--color-code-bg) 65%, var(--color-surface));
+  background: rgba(174, 58, 68, 0.04);
   text-align: left;
   line-height: 1.15;
 }
@@ -149,6 +149,13 @@ code {
   font-family: var(--font-family-code);
   font-size: 0.8rem;
   letter-spacing: -0.5px;
+}
+
+pre code,
+pre .hljs,
+pre code * {
+  padding: 0;
+  background: transparent !important;
 }
 
 strong {
@@ -204,7 +211,6 @@ tbody:last-child {
 .hljs {
   display: block;
   overflow-x: auto;
-  padding: 0.5em;
   font-size: 0.85em;
 }
 
