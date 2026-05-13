@@ -1,0 +1,14 @@
+dist/
+node_modules/
+/tmp/
+.marp-cache/
+secret.yaml
+*.log
+review/_tmp_render/
+templates/*.html
+templates/*.pdf
+templates/*.png
+image.png
+.DS_Store
+Thumbs.db
+.idea/

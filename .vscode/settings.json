@@ -1,0 +1,7 @@
+{
+  "markdown.marp.html": "all",
+  "markdown.marp.themes": [
+    "https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/themes/tutorial-shtu-red.css",
+    "https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/themes/report-amber.css"
+  ]
+}

@@ -1,0 +1,8 @@
+@use "../_base/layouts" as *;
+@use "./_covers";
+
+section:not(.trans, .cover_a, .cover_b, .cover_c, .cover_d, .cover_e, .lastpage) {
+  background-image: url("https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/backgrounds/shanghaitech-master.png");
+  background-size: cover;
+  background-position: center;
+}
