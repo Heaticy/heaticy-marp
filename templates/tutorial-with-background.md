@@ -2,15 +2,10 @@
 marp: true
 theme: tutorial-shtu-red
 size: 16:9
-style: |
-  section.cover-logo-white header > img,
-  section.cover-logo-white footer > img {
-    filter: none !important;
-  }
 ---
 <!-- _class: cover_e cover-logo-white -->
-<!-- _header: ![](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/logos/ShanghaiTech_Logo_White_RGBA.png?v=20260513-white) -->
-<!-- _footer: ![](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/logos/ShanghaiTech_Name_White_RGBA.png?v=20260513-white) -->
+<!-- _header: ![](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/logos/ShanghaiTech_Logo_RGBA.png) -->
+<!-- _footer: ![](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/logos/ShanghaiTech_Name_RGBA.png) -->
 <!-- _paginate: "" -->
 
 # ShanghaiTech Heaticy-Marp

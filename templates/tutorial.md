@@ -3,7 +3,7 @@ marp: true
 theme: tutorial-shtu-red
 size: 16:9
 ---
-<!-- _class: cover_e -->
+<!-- _class: cover_e cover-logo-white -->
 <!-- _header: ![](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/logos/ShanghaiTech_Logo_RGBA.png) -->
 <!-- _footer: ![](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/logos/ShanghaiTech_Name_RGBA.png) -->
 <!-- _paginate: "" -->
