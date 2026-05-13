@@ -131,6 +131,11 @@ section.cover_e p {
   margin-top: auto;
 }
 
+section.cover-logo-white header > img,
+section.cover-logo-white footer > img {
+  filter: none;
+}
+
 section.lastpage div > ul,
 section.lastpage .ending-cols3 {
   display: grid;
