@@ -2,9 +2,7 @@
 
 一个用于生成 Marp PPT 的主题仓库，默认通过腾讯云 COS 提供远程主题和素材。
 
-## 用户说明
-
-重要级别：必看。第一次使用请先按这一节完成 VS Code 配置。
+## 用户说明（必看）
 
 如果你只是想在 VS Code 里预览 Marp，只需要下面几件事：
 
@@ -40,9 +38,7 @@ https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/th
 
 ![配置 Marp HTML 和远程主题](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/docs/vscode-marp-user-settings-step2.png)
 
-### Windows 中文字体
-
-重要级别：建议看。Windows 用户如果要导出 PDF，建议先读这一节。
+### Windows 中文字体（建议看）
 
 Windows 上不装 Noto CJK 也可以预览和导出 PDF，主题会使用系统里已有的中文字体作为 fallback；但不同电脑的中文字形可能略有差异。
 
@@ -62,9 +58,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-noto-cjk.ps1 
 
 安装后请重启已经打开的 VS Code、浏览器或终端，再重新预览或导出 PDF。
 
-### 仅在使用工作区配置时
-
-重要级别：按需看。只有需要把 Marp 配置随项目一起带走时才需要这一节。
+### 仅在使用工作区配置时（按需看）
 
 仓库里的 `.vscode/settings.json` 只是现成示例，适合需要把配置随项目带走的情况；普通使用不需要它。
 
@@ -97,9 +91,7 @@ Markdown 文件放在这个工作区里的任意位置都可以。
 
 现成工作区配置见 [.vscode/settings.json](/mnt/nas-home/heaticy-marp/.vscode/settings.json:1)。
 
-## CLI 用法
-
-重要级别：进阶。普通用户只用 VS Code 预览可以先跳过；需要自动导出 HTML/PDF 时再看。
+## CLI 用法（进阶）
 
 CLI 方式放在 VS Code 方式后面，是因为它更适合自动化：
 
@@ -134,8 +126,6 @@ node --import tsx scripts/render.ts templates/report.md --theme report-amber -o 
 - 加 `--pdf` 时，输出 `pdf`
 - `--theme` 可以覆盖 Markdown 头部里的 `theme`
 
-## 开发说明
-
-重要级别：开发者看。只有修改主题、脚本或发布 COS 时才需要。
+## 开发说明（开发者看）
 
 开发、CLI、COS 发布、主题构建和仓库结构见 [docs/DEVELOPMENT.md](/mnt/nas-home/heaticy-marp/docs/DEVELOPMENT.md:1)。
