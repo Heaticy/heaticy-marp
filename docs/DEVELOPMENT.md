@@ -84,14 +84,14 @@ node --import tsx scripts/build-themes.ts
 - `--font-family-mono`: 行内代码和代码块。
 - `--font-family-accent`: 页脚和装饰性文字。
 
-候选字体不是按平台分支判断，而是浏览器 / Marp 按从左到右匹配。Latin Modern 不视为系统默认字体，标题、正文和代码优先使用 COS 上的 `Heaticy Latin Modern ...` 字体；Noto CJK 则先尝试系统常见的 `Noto ... CJK SC`，缺少时再 fallback 到 COS 上的 `Heaticy Noto ...` 字体文件。远端 Noto 字体使用从 TTC 中提取出的 SC OTF 文件，避免浏览器加载 TTC collection 时选错 face。当前完整 fallback 链如下：
+候选字体不是按平台分支判断，而是浏览器 / Marp 按从左到右匹配。Latin Modern 不视为系统默认字体，标题、正文和代码优先使用 COS 上的 `Heaticy Latin Modern ...` 字体。中文字体只声明 local-only 的 `Heaticy Noto ...` 字体别名，不再通过主题 CSS 从 COS 远程加载；PDF 渲染时如果本机能识别 Heaticy/Noto CJK 就优先使用，否则自然落到系统 fallback，避免下载大体积中文字体导致超时。当前完整 fallback 链如下：
 
 | 用途 | fallback 链 |
 | --- | --- |
-| 标题 | `Heaticy Latin Modern Sans` -> `Noto Sans CJK SC` -> `Heaticy Noto Sans CJK SC` -> `sans-serif` |
-| 正文 | `Heaticy Latin Modern Roman` -> `Noto Serif CJK SC` -> `Heaticy Noto Serif CJK SC` -> `serif` |
-| 代码 | `Heaticy Latin Modern Mono` -> `Ubuntu Mono` -> `DejaVu Sans Mono` -> `Liberation Mono` -> `Noto Sans Mono CJK SC` -> `Heaticy Noto Sans Mono CJK SC` -> `monospace` |
-| 装饰 | `Heaticy Latin Modern Sans` -> `Noto Sans CJK SC` -> `Heaticy Noto Sans CJK SC` -> `sans-serif` |
+| 标题 | `Heaticy Latin Modern Sans` -> `Heaticy Noto Sans CJK SC` -> `Noto Sans CJK SC` -> `sans-serif` |
+| 正文 | `Heaticy Latin Modern Roman` -> `Heaticy Noto Serif CJK SC` -> `Noto Serif CJK SC` -> `serif` |
+| 代码 | `Heaticy Latin Modern Mono` -> `Ubuntu Mono` -> `DejaVu Sans Mono` -> `Liberation Mono` -> `Heaticy Noto Sans Mono CJK SC` -> `Noto Sans Mono CJK SC` -> `monospace` |
+| 装饰 | `Heaticy Latin Modern Sans` -> `Heaticy Noto Sans CJK SC` -> `Noto Sans CJK SC` -> `sans-serif` |
 
 如果需要改变跨平台字体策略，优先修改 `themes/palettes/*.scss` 里的四个 `--font-family-*` 变量，并同步检查两个 palette，避免同一主题族在不同颜色预设下字体不一致。
 
