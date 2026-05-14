@@ -219,6 +219,7 @@ section:is(.bq-blue, .bq-red, .bq-green, .bq-purple, .bq-black, .bq-yellow) bloc
 }
 
 section :is(h1, h2, h3, h4, h5, h6) code {
+  color: inherit;
   font-size: inherit;
   line-height: inherit;
 }
