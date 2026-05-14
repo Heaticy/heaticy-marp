@@ -25,6 +25,7 @@ const client = new COS({
 
 async function main() {
   await buildThemes();
+  await configureBucketCors();
 
   const uploads = [
     {
@@ -72,12 +73,47 @@ function putObject(key: string, body: Buffer, contentTypeValue: string) {
   });
 }
 
+function configureBucketCors() {
+  return new Promise<void>((resolve, reject) => {
+    client.putBucketCors(
+      {
+        Bucket: bucket,
+        Region: region,
+        CORSRules: [
+          {
+            AllowedOrigin: ["*"],
+            AllowedMethod: ["GET", "HEAD"],
+            AllowedHeader: ["*"],
+            ExposeHeader: ["ETag", "Content-Type"],
+            MaxAgeSeconds: 86400,
+          },
+        ],
+      },
+      (error) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+
+        console.log("[sync-cos] bucket CORS configured");
+        resolve();
+      },
+    );
+  });
+}
+
 function contentType(filePath: string): string {
   const extension = path.extname(filePath).toLowerCase();
 
   switch (extension) {
     case ".css":
       return "text/css; charset=utf-8";
+    case ".otf":
+      return "font/otf";
+    case ".ttf":
+      return "font/ttf";
+    case ".ttc":
+      return "font/collection";
     case ".png":
       return "image/png";
     case ".jpg":
