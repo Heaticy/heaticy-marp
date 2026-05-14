@@ -1,5 +1,6 @@
 import path from "node:path";
 import { promises as fs } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { compile } from "sass";
 
 import { repoRoot, ensureDir } from "./lib/runtime.ts";
@@ -27,6 +28,6 @@ function normalizeBuiltThemeCss(source: string, themeName: string): string {
   return `/* @theme ${themeName} */\n${withoutThemeComment.replace(/^\s+/, "")}`;
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {
   await buildThemes();
 }
