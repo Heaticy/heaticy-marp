@@ -38,6 +38,26 @@ https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/th
 
 ![配置 Marp HTML 和远程主题](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/docs/vscode-marp-user-settings-step2.png)
 
+### Windows 中文字体
+
+Windows 上不装 Noto CJK 也可以预览和导出 PDF，主题会使用系统里已有的中文字体作为 fallback；但不同电脑的中文字形可能略有差异。
+
+如果你希望导出的 PDF 在 Windows 上更稳定，建议先运行仓库里的字体安装脚本。它会从腾讯云 COS 下载 Noto Serif/Sans/Sans Mono CJK SC 的常规和粗体字体，并安装到当前用户字体目录，不需要管理员权限。
+
+在 PowerShell 里进入仓库目录后运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-noto-cjk.ps1
+```
+
+如果已经安装过，脚本会自动跳过；如果需要重新下载并覆盖安装，运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-noto-cjk.ps1 -Force
+```
+
+安装后请重启已经打开的 VS Code、浏览器或终端，再重新预览或导出 PDF。
+
 ### 仅在使用工作区配置时
 
 仓库里的 `.vscode/settings.json` 只是现成示例，适合需要把配置随项目带走的情况；普通使用不需要它。
