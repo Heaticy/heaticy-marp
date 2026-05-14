@@ -4,12 +4,12 @@
 
 ## 用户说明
 
-如果你只是想在 VS Code 里预览 Marp，只需要下面 4 件事：
+如果你只是想在 VS Code 里预览 Marp，只需要下面几件事：
 
 1. 安装 `Marp for VS Code` 插件。
 2. 当前 VS Code 工作区是 `Trusted Workspace`。
-3. VS Code 打开的工作区根目录下有 `.vscode/settings.json`。
-4. Markdown 头部包含正确的 Marp 配置。
+3. 在 VS Code 用户级设置里加载远程主题。
+4. Markdown 头部包含正确的 Marp 配置；推荐直接参考或复制本仓库 `templates/` 里的现成模板。
 
 Markdown 头部最小示例：
 
@@ -21,9 +21,22 @@ size: 16:9
 ---
 ```
 
-工作区设置：
+直接使用用户级设置即可，不需要在项目里放 `.vscode/settings.json`。打开 VS Code 设置，搜索 `marp`，在用户设置里把 `Markdown > Marp: HTML` 改成 `all`，并在 `Markdown > Marp: Themes` 添加这两个远程主题：
 
-工作区目录结构至少要像这样：
+```text
+https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/themes/tutorial-shtu-red.css
+https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/themes/report-amber.css
+```
+
+这样配置后，换目录打开 Markdown 也能预览；如果 VS Code 的工作区配置偶发失效，用户级配置也可以作为稳定 fallback。
+
+使用用户级设置时，Markdown 文件放在哪里都可以，不需要固定工作区结构。
+
+### 仅在使用工作区配置时
+
+仓库里的 `.vscode/settings.json` 只是现成示例，适合需要把配置随项目带走的情况；普通使用不需要它。
+
+如果你确实要使用工作区配置，需要保证 `.vscode/settings.json` 位于 VS Code 打开的工作区根目录下。例如：
 
 ```text
 your-workspace/
@@ -32,7 +45,7 @@ your-workspace/
   anywhere.md
 ```
 
-也就是说，关键是工作区根目录下必须有 `.vscode/settings.json`。Markdown 文件放在这个工作区里的任意位置都可以。
+Markdown 文件放在这个工作区里的任意位置都可以。
 
 ```json
 {

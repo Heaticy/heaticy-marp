@@ -38,6 +38,28 @@ node --import tsx scripts/render.ts templates/tutorial.md --pdf -o /tmp/tutorial
 - 按主题名从 COS 下载远程 CSS 到 `.marp-cache/themes/`
 - 用本地缓存文件调用 `marp-cli`
 
+## VS Code 用户级 Marp 配置
+
+不想在每个项目里放 `.vscode/settings.json` 时，可以直接使用 VS Code 用户级设置。它对所有工作区生效，也可以作为 VS Code 工作区配置异常时的 fallback。
+
+步骤：
+
+1. 打开 `文件 > 首选项 > 设置`。
+2. 搜索 `marp`，切到 `用户` 设置。
+3. 把 `Markdown > Marp: HTML` 改成 `all`。
+4. 在 `Markdown > Marp: Themes` 添加远程主题 CSS：
+
+```text
+https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/themes/tutorial-shtu-red.css
+https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/themes/report-amber.css
+```
+
+示意图：
+
+![打开 VS Code 用户设置](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/docs/vscode-marp-user-settings-step1.png)
+
+![配置 Marp HTML 和远程主题](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/docs/vscode-marp-user-settings-step2.png)
+
 ## 本地主题开发
 
 如果你要修改 `themes/**/*.scss`，先安装依赖，再构建本地 CSS：
