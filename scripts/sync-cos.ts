@@ -45,13 +45,23 @@ async function main() {
       const relativeFile = toPosix(path.relative(upload.localRoot, file));
       const key = `${upload.remoteRoot}/${relativeFile}`;
       const body = await fs.readFile(file);
-      await putObject(key, body, contentType(file));
+      await putObject(key, body, {
+        contentType: contentType(file),
+        cacheControl: cacheControl(file),
+      });
       console.log(`[sync-cos] ${toPosix(path.relative(repoRoot, file))} -> ${key}`);
     }
   }
 }
 
-function putObject(key: string, body: Buffer, contentTypeValue: string) {
+function putObject(
+  key: string,
+  body: Buffer,
+  headers: {
+    contentType: string;
+    cacheControl?: string;
+  },
+) {
   return new Promise<void>((resolve, reject) => {
     client.putObject(
       {
@@ -59,7 +69,8 @@ function putObject(key: string, body: Buffer, contentTypeValue: string) {
         Region: region,
         Key: key,
         Body: body,
-        ContentType: contentTypeValue,
+        ContentType: headers.contentType,
+        CacheControl: headers.cacheControl,
       },
       (error) => {
         if (error) {
@@ -84,7 +95,7 @@ function configureBucketCors() {
             AllowedOrigin: ["*"],
             AllowedMethod: ["GET", "HEAD"],
             AllowedHeader: ["*"],
-            ExposeHeader: ["ETag", "Content-Type"],
+            ExposeHeader: ["ETag", "Content-Type", "Cache-Control"],
             MaxAgeSeconds: 86400,
           },
         ],
@@ -124,6 +135,16 @@ function contentType(filePath: string): string {
     default:
       return "application/octet-stream";
   }
+}
+
+function cacheControl(filePath: string): string | undefined {
+  if (!isFontFile(filePath)) return undefined;
+  return "public, max-age=31536000, immutable";
+}
+
+function isFontFile(filePath: string): boolean {
+  const extension = path.extname(filePath).toLowerCase();
+  return [".otf", ".ttf", ".ttc", ".woff", ".woff2"].includes(extension);
 }
 
 async function loadSecretConfig(): Promise<{
