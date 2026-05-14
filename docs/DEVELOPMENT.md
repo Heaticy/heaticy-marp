@@ -75,6 +75,26 @@ node --import tsx scripts/build-themes.ts
 - `/* @size 16:9 1280px 720px */`
 - `/* @size 4:3 960px 720px */`
 
+## 字体候选规则
+
+主题字体由 palette 里的 CSS 变量控制，目前 `shtu-red` 和 `amber` 使用同一组候选顺序：
+
+- `--font-family-display`: 标题、封面和强调标题。
+- `--font-family-body`: 正文。
+- `--font-family-mono`: 行内代码和代码块。
+- `--font-family-accent`: 页脚和装饰性文字。
+
+候选字体不是按平台分支判断，而是浏览器 / Marp 按从左到右匹配。Latin Modern 不视为系统默认字体，标题、正文和代码优先使用 COS 上的 `Heaticy Latin Modern ...` 字体；Noto CJK 则先尝试系统常见的 `Noto ... CJK SC`，缺少时再 fallback 到 COS 上的 `Heaticy Noto ...` 字体文件。当前完整 fallback 链如下：
+
+| 用途 | fallback 链 |
+| --- | --- |
+| 标题 | `Heaticy Latin Modern Sans` -> `Noto Sans CJK SC` -> `Heaticy Noto Sans CJK SC` -> `sans-serif` |
+| 正文 | `Heaticy Latin Modern Roman` -> `Noto Serif CJK SC` -> `Heaticy Noto Serif CJK SC` -> `serif` |
+| 代码 | `Heaticy Latin Modern Mono` -> `Ubuntu Mono` -> `DejaVu Sans Mono` -> `Liberation Mono` -> `Noto Sans Mono CJK SC` -> `monospace` |
+| 装饰 | `Heaticy Latin Modern Sans` -> `Noto Sans CJK SC` -> `Heaticy Noto Sans CJK SC` -> `sans-serif` |
+
+如果需要改变跨平台字体策略，优先修改 `themes/palettes/*.scss` 里的四个 `--font-family-*` 变量，并同步检查两个 palette，避免同一主题族在不同颜色预设下字体不一致。
+
 ## GitLab CI
 
 GitLab CI 使用 `latex-runner` 标签匹配当前可用的 shared runner。runner 不接收 untagged jobs，因此新增 job 时需要保留这个标签配置。

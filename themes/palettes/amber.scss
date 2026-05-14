@@ -1,10 +1,10 @@
 @use "../_base/palette-contract" as contract;
 
 :root {
-  --font-family-display: "Optima LT Medium", "Optima", "Arial", "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
-  --font-family-body: "Latin Modern Math", "Adobe Garamond", "方正宋刻本秀楷简体", "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", "SimSun", "华文中宋", "KaiTi", "楷体", serif;
-  --font-family-mono: "Fira Code", "Consolas", "SFMono-Regular", "Menlo", "Noto Sans Mono CJK SC", "Source Han Mono SC", "Microsoft YaHei Mono", "宋体", monospace;
-  --font-family-accent: "Charm", "Calibri", "叶根友毛笔行书修正版", "方正苏新诗柳楷简体", "Kaiti SC", "STKaiti", "KaiTi", "楷体", "LXGW WenKai Screen", "霞鹜文楷 屏幕阅读版", cursive;
+  --font-family-display: "Heaticy Latin Modern Sans", "Noto Sans CJK SC", "Heaticy Noto Sans CJK SC", sans-serif;
+  --font-family-body: "Heaticy Latin Modern Roman", "Noto Serif CJK SC", "Heaticy Noto Serif CJK SC", serif;
+  --font-family-mono: "Heaticy Latin Modern Mono", "Ubuntu Mono", "DejaVu Sans Mono", "Liberation Mono", "Noto Sans Mono CJK SC", monospace;
+  --font-family-accent: "Heaticy Latin Modern Sans", "Noto Sans CJK SC", "Heaticy Noto Sans CJK SC", sans-serif;
   --color-primary: #da910b;
   --color-on-primary: #ffffff;
   --color-bg: #ffffff;

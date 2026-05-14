@@ -3,6 +3,7 @@ node_modules/
 /tmp/
 .marp-cache/
 secret.yaml
+/*.pdf
 *.log
 review/_tmp_render/
 templates/*.html
