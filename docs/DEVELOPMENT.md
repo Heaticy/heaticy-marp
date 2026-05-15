@@ -118,22 +118,10 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-fonts.ps1 -Fo
 Linux 和 macOS 可以使用 Bash 脚本安装同一批字体到当前用户目录：
 
 ```bash
-npm run fonts:unix
-```
-
-如果当前环境没有 npm，可以直接执行脚本：
-
-```bash
 bash scripts/install-unix-fonts.sh
 ```
 
 默认安装目录为 Linux 的 `${XDG_DATA_HOME:-$HOME/.local/share}/fonts/heaticy-marp`，以及 macOS 的 `$HOME/Library/Fonts`。脚本会保留 OTF 文件的原始 family / fullname / PostScript 名，不创建 `Heaticy ...` 注册名。需要重新下载并覆盖安装时运行：
-
-```bash
-npm run fonts:unix -- --force
-```
-
-没有 npm 时对应为：
 
 ```bash
 bash scripts/install-unix-fonts.sh --force

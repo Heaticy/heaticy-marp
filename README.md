@@ -61,12 +61,6 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-fonts.ps1 -Fo
 Linux / macOS 也可以使用同一批字体，安装到当前用户字体目录：
 
 ```bash
-npm run fonts:unix
-```
-
-没有 npm 时，直接运行脚本即可：
-
-```bash
 bash scripts/install-unix-fonts.sh
 ```
 
