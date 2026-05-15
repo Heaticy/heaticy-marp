@@ -84,20 +84,20 @@ node --import tsx scripts/build-themes.ts
 - `--font-family-mono`: 行内代码和代码块。
 - `--font-family-accent`: 页脚和装饰性文字。
 
-候选字体不是按平台分支判断，而是浏览器 / Marp 按从左到右匹配。Latin Modern 不视为系统默认字体，标题、正文和代码优先使用 `Heaticy Latin Modern ...` 字体；对应 `@font-face` 会先尝试本机 Latin Modern，再回退到 COS 上的小体积 OTF。中文字体只声明 local-only 的 `Heaticy Noto ...` 字体别名，不再通过主题 CSS 从 COS 远程加载；PDF 渲染时如果本机能识别 Heaticy/Noto CJK 就优先使用，否则自然落到系统 fallback，避免下载大体积中文字体导致超时。当前完整 fallback 链如下：
+候选字体不是按平台分支判断，而是浏览器 / Marp 按从左到右匹配。Latin Modern 不视为系统默认字体，标题、正文和代码优先使用 `Heaticy Latin Modern ...` 字体；对应 `@font-face` 会先尝试本机 Latin Modern，再回退到 COS 上的小体积 OTF。中文字体不通过主题 CSS 从 COS 远程加载；PDF 渲染时如果本机能识别 Noto CJK 就优先使用，否则自然落到系统 fallback，避免下载大体积中文字体导致超时。当前完整 fallback 链如下：
 
 | 用途 | fallback 链 |
 | --- | --- |
-| 标题 | `Heaticy Latin Modern Sans` -> `Heaticy Noto Sans CJK SC` -> `Noto Sans CJK SC` -> `sans-serif` |
-| 正文 | `Heaticy Latin Modern Roman` -> `Heaticy Noto Serif CJK SC` -> `Noto Serif CJK SC` -> `serif` |
-| 代码 | `Heaticy Latin Modern Mono` -> `Ubuntu Mono` -> `DejaVu Sans Mono` -> `Liberation Mono` -> `Heaticy Noto Sans Mono CJK SC` -> `Noto Sans Mono CJK SC` -> `monospace` |
-| 装饰 | `Heaticy Latin Modern Sans` -> `Heaticy Noto Sans CJK SC` -> `Noto Sans CJK SC` -> `sans-serif` |
+| 标题 | `Heaticy Latin Modern Sans` -> `Noto Sans CJK SC` -> `sans-serif` |
+| 正文 | `Heaticy Latin Modern Roman` -> `Noto Serif CJK SC` -> `serif` |
+| 代码 | `Heaticy Latin Modern Mono` -> `Noto Sans Mono CJK SC` -> `monospace` |
+| 装饰 | `Heaticy Latin Modern Sans` -> `Noto Sans CJK SC` -> `sans-serif` |
 
 如果需要改变跨平台字体策略，优先修改 `themes/palettes/*.scss` 里的四个 `--font-family-*` 变量，并同步检查两个 palette，避免同一主题族在不同颜色预设下字体不一致。
 
 ### Windows 安装本仓库字体
 
-Windows 机器如果没有安装本仓库字体，主题仍可正常渲染 PDF，并会落到系统中文 fallback；但不同机器的中英文字形可能不完全一致。需要稳定复现模板效果，或需要让 `Heaticy Latin Modern ...` 和 `Heaticy Noto ...` 的 local-only 字体声明命中本机字体时，运行仓库里的用户级安装脚本：
+Windows 机器如果没有安装本仓库字体，主题仍可正常渲染 PDF，并会落到系统中文 fallback；但不同机器的中英文字形可能不完全一致。需要稳定复现模板效果，或需要让 `Heaticy Latin Modern ...` 和 `Noto ... CJK SC` 字体命中本机字体时，运行仓库里的用户级安装脚本：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-fonts.ps1

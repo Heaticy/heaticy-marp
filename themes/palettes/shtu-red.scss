@@ -1,10 +1,10 @@
 @use "../_base/palette-contract" as contract;
 
 :root {
-  --font-family-display: "Heaticy Latin Modern Sans", "Heaticy Noto Sans CJK SC", "Noto Sans CJK SC", sans-serif;
-  --font-family-body: "Heaticy Latin Modern Roman", "Heaticy Noto Serif CJK SC", "Noto Serif CJK SC", serif;
-  --font-family-mono: "Heaticy Latin Modern Mono", "Ubuntu Mono", "DejaVu Sans Mono", "Liberation Mono", "Heaticy Noto Sans Mono CJK SC", "Noto Sans Mono CJK SC", monospace;
-  --font-family-accent: "Heaticy Latin Modern Sans", "Heaticy Noto Sans CJK SC", "Noto Sans CJK SC", sans-serif;
+  --font-family-display: "Heaticy Latin Modern Sans", "Noto Sans CJK SC", sans-serif;
+  --font-family-body: "Heaticy Latin Modern Roman", "Noto Serif CJK SC", serif;
+  --font-family-mono: "Heaticy Latin Modern Mono", "Noto Sans Mono CJK SC", monospace;
+  --font-family-accent: "Heaticy Latin Modern Sans", "Noto Sans CJK SC", sans-serif;
   --color-primary: #ae3a44;
   --color-on-primary: #ffffff;
   --color-bg: #ffffff;
