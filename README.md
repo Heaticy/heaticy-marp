@@ -48,7 +48,9 @@ https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/th
 
 ### Windows / macOS / Linux 字体（建议看）
 
-不安装字体也可以预览和导出 PDF；如果希望 Windows / macOS / Linux 上的 PDF 字体更稳定，先运行对应脚本。Ubuntu 只要有中文字体，一般就自带或能命中 Noto CJK；最小化环境缺中文时再安装。
+不安装字体也可以预览和导出 PDF；如果希望 Windows / macOS / Linux 上的 PDF 字体更稳定，先运行对应脚本。
+
+**Ubuntu 只要有中文字体，一般就自带或能命中 Noto CJK；最小化环境缺中文时再安装**。
 
 Windows:
 
