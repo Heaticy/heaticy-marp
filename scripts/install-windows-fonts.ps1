@@ -26,12 +26,12 @@ $fontGroups = @(
     Name = "Latin Modern"
     BaseUrl = "https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/fonts/latin-modern"
     Fonts = @(
-      @{ File = "lmroman10-regular.otf"; RegistryName = "Heaticy Latin Modern Roman (OpenType)" },
-      @{ File = "lmroman10-bold.otf"; RegistryName = "Heaticy Latin Modern Roman Bold (OpenType)" },
-      @{ File = "lmsans10-regular.otf"; RegistryName = "Heaticy Latin Modern Sans (OpenType)" },
-      @{ File = "lmsans10-bold.otf"; RegistryName = "Heaticy Latin Modern Sans Bold (OpenType)" },
-      @{ File = "lmmono10-regular.otf"; RegistryName = "Heaticy Latin Modern Mono (OpenType)" },
-      @{ File = "lmmonolt10-bold.otf"; RegistryName = "Heaticy Latin Modern Mono Bold (OpenType)" }
+      @{ File = "lmroman10-regular.otf"; RegistryName = "Latin Modern Roman 10 Regular (OpenType)" },
+      @{ File = "lmroman10-bold.otf"; RegistryName = "Latin Modern Roman 10 Bold (OpenType)" },
+      @{ File = "lmsans10-regular.otf"; RegistryName = "Latin Modern Sans 10 Regular (OpenType)" },
+      @{ File = "lmsans10-bold.otf"; RegistryName = "Latin Modern Sans 10 Bold (OpenType)" },
+      @{ File = "lmmono10-regular.otf"; RegistryName = "Latin Modern Mono 10 Regular (OpenType)" },
+      @{ File = "lmmonolt10-bold.otf"; RegistryName = "Latin Modern Mono Light 10 Bold (OpenType)" }
     )
   },
   @{
@@ -84,9 +84,10 @@ function Test-FontInstalled {
 New-Item -ItemType Directory -Force -Path $cachePath, $userFontDir | Out-Null
 New-Item -Force -Path $fontRegistryPath | Out-Null
 
-Write-Host "Installing Heaticy Windows fonts for current user."
+Write-Host "Installing Heaticy-Marp fonts for current user."
 Write-Host "Cache: $cachePath"
 Write-Host "User font directory: $userFontDir"
+Write-Host "Font registry names use the original OTF metadata, without a Heaticy prefix."
 if (-not $isAdmin) {
   Write-Host "Administrator privileges were not detected and are not required for current-user installation."
 }

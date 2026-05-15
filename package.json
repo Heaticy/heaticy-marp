@@ -6,6 +6,8 @@
   "scripts": {
     "build:themes": "node --import tsx scripts/build-themes.ts",
     "render": "node --import tsx scripts/render.ts",
+    "fonts:unix": "bash scripts/install-unix-fonts.sh",
+    "fonts:windows": "powershell -ExecutionPolicy Bypass -File ./scripts/install-windows-fonts.ps1",
     "sync:cos": "node --import tsx scripts/sync-cos.ts",
     "prepare": "node --import tsx scripts/build-themes.ts",
     "build": "node --import tsx scripts/build-themes.ts",

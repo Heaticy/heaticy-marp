@@ -58,6 +58,14 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-fonts.ps1 -Fo
 
 安装后请重启已经打开的 VS Code、浏览器或终端，再重新预览或导出 PDF。
 
+Linux / macOS 也可以使用同一批字体，安装到当前用户字体目录：
+
+```bash
+npm run fonts:unix
+```
+
+这些安装脚本不会把系统字体注册成 `Heaticy ...` 名字。`Heaticy Latin Modern ...` 只是主题 CSS 里的逻辑字体名，用来统一本地 Latin Modern 和 COS fallback。
+
 ### 仅在使用工作区配置时（按需看）
 
 仓库里的 `.vscode/settings.json` 只是现成示例，适合需要把配置随项目带走的情况；普通使用不需要它。
