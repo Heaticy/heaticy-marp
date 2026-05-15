@@ -95,18 +95,18 @@ node --import tsx scripts/build-themes.ts
 
 如果需要改变跨平台字体策略，优先修改 `themes/palettes/*.scss` 里的四个 `--font-family-*` 变量，并同步检查两个 palette，避免同一主题族在不同颜色预设下字体不一致。
 
-### Windows 安装 Noto CJK 字体
+### Windows 安装本仓库字体
 
-Windows 机器如果没有安装 Noto CJK，主题仍可正常渲染 PDF，并会落到系统中文 fallback；但不同机器的中文观感可能不完全一致。需要稳定复现模板效果，或需要让 `Heaticy Noto ...` 的 local-only 字体声明命中本机 Noto CJK 时，运行仓库里的用户级安装脚本：
+Windows 机器如果没有安装本仓库字体，主题仍可正常渲染 PDF，并会落到系统中文 fallback；但不同机器的中英文字形可能不完全一致。需要稳定复现模板效果，或需要让 `Heaticy Latin Modern ...` 和 `Heaticy Noto ...` 的 local-only 字体声明命中本机字体时，运行仓库里的用户级安装脚本：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-noto-cjk.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-fonts.ps1
 ```
 
-脚本会从 COS 下载 Noto Serif/Sans/Sans Mono CJK SC 的 Regular/Bold OTF 到 `.marp-cache/fonts/noto/`，再安装到当前用户字体目录 `%LOCALAPPDATA%\Microsoft\Windows\Fonts`。默认会跳过已下载或已安装的字体；需要重新下载并覆盖安装时加 `-Force`：
+脚本会从 COS 下载 Latin Modern 和 Noto Serif/Sans/Sans Mono CJK SC 的 Regular/Bold OTF 到 `.marp-cache/fonts/` 下的分组缓存目录，再安装到当前用户字体目录 `%LOCALAPPDATA%\Microsoft\Windows\Fonts`。默认会跳过已下载或已安装的字体；需要重新下载并覆盖安装时加 `-Force`：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-noto-cjk.ps1 -Force
+powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-fonts.ps1 -Force
 ```
 
 当前脚本优先使用当前用户字体安装方案，通常不需要管理员权限。安装后请重启已经打开的 VS Code、浏览器或终端，再重新渲染 PDF。
