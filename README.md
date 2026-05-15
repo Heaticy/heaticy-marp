@@ -64,6 +64,12 @@ Linux / macOS 也可以使用同一批字体，安装到当前用户字体目录
 npm run fonts:unix
 ```
 
+没有 npm 时，直接运行脚本即可：
+
+```bash
+bash scripts/install-unix-fonts.sh
+```
+
 这些安装脚本不会把系统字体注册成 `Heaticy ...` 名字。`Heaticy Latin Modern ...` 只是主题 CSS 里的逻辑字体名，用来统一本地 Latin Modern 和 COS fallback。
 
 ### 仅在使用工作区配置时（按需看）
