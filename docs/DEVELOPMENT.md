@@ -113,19 +113,21 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-fonts.ps1 -Fo
 
 当前脚本优先使用当前用户字体安装方案，通常不需要管理员权限。安装后请重启已经打开的 VS Code、浏览器或终端，再重新渲染 PDF。
 
-### Linux / macOS 安装本仓库字体
+### macOS 安装本仓库字体
 
-Linux 和 macOS 可以使用 Bash 脚本安装同一批字体到当前用户目录：
+macOS 默认有可用的系统中文字体，通常不预装 Noto CJK；不安装也能显示中文，但不同平台中文字形会不同。需要命中主题字体链里的 `Noto ... CJK SC` 并稳定复现 PDF 效果时，使用 Bash 脚本安装同一批字体到当前用户目录：
 
 ```bash
 bash scripts/install-unix-fonts.sh
 ```
 
-默认安装目录为 Linux 的 `${XDG_DATA_HOME:-$HOME/.local/share}/fonts/heaticy-marp`，以及 macOS 的 `$HOME/Library/Fonts`。脚本会保留 OTF 文件的原始 family / fullname / PostScript 名，不创建 `Heaticy ...` 注册名。需要重新下载并覆盖安装时运行：
+macOS 默认安装目录为 `$HOME/Library/Fonts`。脚本会保留 OTF 文件的原始 family / fullname / PostScript 名，不创建 `Heaticy ...` 注册名。需要重新下载并覆盖安装时运行：
 
 ```bash
 bash scripts/install-unix-fonts.sh --force
 ```
+
+同一个脚本也支持 Linux，默认安装到 `${XDG_DATA_HOME:-$HOME/.local/share}/fonts/heaticy-marp`。Linux 通常已经有可用的 Noto CJK 或系统中文字体；如果当前发行版没有，尤其是最小化 Ubuntu / 服务器环境缺少中文字体，或者也需要统一 PDF 字形，可以运行同一个脚本。
 
 ## GitLab CI
 

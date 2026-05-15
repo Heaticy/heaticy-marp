@@ -34,11 +34,19 @@ https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/th
 
 示意图：
 
-![打开 VS Code 用户设置](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/docs/vscode-marp-user-settings-step1.png)
+<img
+  src="https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/docs/vscode-marp-user-settings-step1.png"
+  alt="打开 VS Code 用户设置"
+  width="560"
+/>
 
-![配置 Marp HTML 和远程主题](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/docs/vscode-marp-user-settings-step2.png)
+<img
+  src="https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/docs/vscode-marp-user-settings-step2.png"
+  alt="配置 Marp HTML 和远程主题"
+  width="560"
+/>
 
-### Windows 字体（建议看）
+### Windows / macOS 字体（建议看）
 
 Windows 上不装本仓库字体也可以预览和导出 PDF，主题会使用系统里已有的中文字体作为 fallback；但不同电脑的中文字形可能略有差异。
 
@@ -58,11 +66,13 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-windows-fonts.ps1 -Fo
 
 安装后请重启已经打开的 VS Code、浏览器或终端，再重新预览或导出 PDF。
 
-Linux / macOS 也可以使用同一批字体，安装到当前用户字体目录：
+macOS 默认有可用的系统中文字体，通常不预装 Noto CJK；不安装也能显示中文，但不同平台中文字形会不同。需要命中主题字体链里的 `Noto ... CJK SC` 并稳定复现 PDF 效果时，运行：
 
 ```bash
 bash scripts/install-unix-fonts.sh
 ```
+
+Linux 通常已经有可用的 Noto CJK 或系统中文字体；如果当前发行版没有，尤其是最小化 Ubuntu / 服务器环境缺少中文字体，或者也需要统一 PDF 字形，可以使用同一个 Bash 脚本安装。
 
 这些安装脚本不会把系统字体注册成 `Heaticy ...` 名字。`Heaticy Latin Modern ...` 只是主题 CSS 里的逻辑字体名，用来统一本地 Latin Modern 和 COS fallback。
 
