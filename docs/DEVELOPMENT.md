@@ -84,7 +84,7 @@ node --import tsx scripts/build-themes.ts
 - `--font-family-mono`: 行内代码和代码块。
 - `--font-family-accent`: 页脚和装饰性文字。
 
-候选字体不是按平台分支判断，而是浏览器 / Marp 按从左到右匹配。Latin Modern 不视为系统默认字体，标题、正文和代码优先使用 COS 上的 `Heaticy Latin Modern ...` 字体。中文字体只声明 local-only 的 `Heaticy Noto ...` 字体别名，不再通过主题 CSS 从 COS 远程加载；PDF 渲染时如果本机能识别 Heaticy/Noto CJK 就优先使用，否则自然落到系统 fallback，避免下载大体积中文字体导致超时。当前完整 fallback 链如下：
+候选字体不是按平台分支判断，而是浏览器 / Marp 按从左到右匹配。Latin Modern 不视为系统默认字体，标题、正文和代码优先使用 `Heaticy Latin Modern ...` 字体；对应 `@font-face` 会先尝试本机 Latin Modern，再回退到 COS 上的小体积 OTF。中文字体只声明 local-only 的 `Heaticy Noto ...` 字体别名，不再通过主题 CSS 从 COS 远程加载；PDF 渲染时如果本机能识别 Heaticy/Noto CJK 就优先使用，否则自然落到系统 fallback，避免下载大体积中文字体导致超时。当前完整 fallback 链如下：
 
 | 用途 | fallback 链 |
 | --- | --- |
