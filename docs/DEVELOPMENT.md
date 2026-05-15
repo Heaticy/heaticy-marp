@@ -93,6 +93,8 @@ node --import tsx scripts/build-themes.ts
 | 代码 | `Heaticy Latin Modern Mono` -> `Noto Sans Mono CJK SC` -> `monospace` |
 | 装饰 | `Heaticy Latin Modern Sans` -> `Noto Sans CJK SC` -> `sans-serif` |
 
+表格末尾的 `sans-serif`、`serif` 和 `monospace` 是 CSS 通用字体族，不是仓库提供或 COS 托管的具体字体。它们只作为最后兜底：前面的 Latin Modern / Noto CJK 都不可用时，由浏览器、Marp 或操作系统选择对应类别的默认字体。
+
 如果需要改变跨平台字体策略，优先修改 `themes/palettes/*.scss` 里的四个 `--font-family-*` 变量，并同步检查两个 palette，避免同一主题族在不同颜色预设下字体不一致。
 
 ### Windows 安装本仓库字体
