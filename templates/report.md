@@ -120,3 +120,19 @@ Heaticy-Marp 提供了 6 种列表分列的方式，分别为：
 > BQ Quote
 >
 > Box Quote!
+
+---
+<!-- _class: lastpage -->
+<!-- _header: "" -->
+<!-- _footer: "" -->
+<!-- _paginate: "" -->
+
+###### Thank You
+
+<div class="icons">
+
+- Heaticy-Marp
+- ShanghaiTech
+- COS theme assets
+
+</div>

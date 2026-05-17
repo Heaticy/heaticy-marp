@@ -91,11 +91,16 @@ Markdown 文件放在这个工作区里的任意位置都可以。
 }
 ```
 
-现成模板：
+### 现成模板
 
-- `templates/tutorial.md`
-- `templates/tutorial-with-background.md`
-- `templates/report.md`
+仓库里的 `templates/` 都可以直接复制后改内容使用：
+
+| 模板 | 主题 | 适合场景 | 说明 |
+| --- | --- | --- | --- |
+| `templates/tutorial.md` | `tutorial-shtu-red` | 教学、习题课、tutorial slides | 标准教学模板，包含封面、目录页、章节过渡页、常用正文布局和尾页。普通教学 PPT 优先从这个文件开始改。 |
+| `templates/tutorial-with-your-background.md` | `tutorial-shtu-red` | 演示替换为自己的背景图 | 在 `tutorial.md` 的基础上精简了部分过渡页，并示例如何给当前页加背景图。模板里使用 `_backgroundImage`，表示只影响当前页；如果写成 `backgroundImage`，会变成全局背景并影响后续页面。 |
+| `templates/report.md` | `report-amber` | 汇报、项目展示、阶段报告 | 使用 amber 报告主题，结构和 tutorial 模板接近，但封面和配色更适合报告场景。 |
+| `templates/CS100-r13.md` | `tutorial-shtu-red` | 真实课程讲义参考 | CS100 Makefile recitation 示例，包含 `math: mathjax`、分页、课程 header、完整目录和多页课程内容。适合参考真实课件怎么组织章节、代码块和说明文字。 |
 
 现成工作区配置见 [.vscode/settings.json](/mnt/nas-home/heaticy-marp/.vscode/settings.json:1)。
 
@@ -126,6 +131,7 @@ node --import tsx scripts/render.ts <input.md> --pdf -o output.pdf
 node --import tsx scripts/render.ts templates/tutorial.md -o /tmp/tutorial.html
 node --import tsx scripts/render.ts templates/tutorial.md --pdf -o /tmp/tutorial.pdf
 node --import tsx scripts/render.ts templates/report.md --theme report-amber -o /tmp/report.html
+node --import tsx scripts/render.ts templates/CS100-r13.md --pdf -o /tmp/CS100-r13.pdf
 ```
 
 说明：

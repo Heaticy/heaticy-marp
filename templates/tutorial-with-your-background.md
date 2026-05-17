@@ -40,7 +40,7 @@ COS theme assets enabled
 
 
 ---
-<!-- backgroundImage: url(https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/backgrounds/shanghaitech-master.png)-->
+<!-- _backgroundImage: url(https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/backgrounds/shanghaitech-master.png)-->
 ## 1. XXX
 <!-- _class: fixedtitleA -->
 
@@ -112,3 +112,19 @@ Heaticy-Marp 提供了 6 种列表分列的方式，分别为：
 > BQ Quote
 >
 > Box Quote!
+
+---
+<!-- _class: lastpage -->
+<!-- _header: "" -->
+<!-- _footer: "" -->
+<!-- _paginate: "" -->
+
+###### Thank You
+
+<div class="icons">
+
+- Heaticy-Marp
+- ShanghaiTech
+- COS theme assets
+
+</div>

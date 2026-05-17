@@ -60,6 +60,196 @@ https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/th
 
 ![配置 Marp HTML 和远程主题](https://heaticy-1310163554.cos.ap-shanghai.myqcloud.com/markdown/heaticy-marp/assets/docs/vscode-marp-user-settings-step2.png)
 
+## Marp 指令与模板 class
+
+本仓库模板主要由三层控制外观：
+
+- frontmatter：写在 Markdown 文件最开头，控制整份文稿。
+- Marp HTML 注释指令：写在某一页附近，控制当前页或后续页面。
+- 主题 class：通过 `_class` 加到当前页，触发 `themes/` 里的 CSS 布局。
+
+### frontmatter
+
+frontmatter 位于文件最顶部的 `---` 块内。常用字段：
+
+```yaml
+---
+marp: true
+theme: tutorial-shtu-red
+size: 16:9
+paginate: true
+math: mathjax
+header: \ *CS100* *Tutorial 15* *Fall 2025*
+---
+```
+
+字段说明：
+
+| 字段 | 作用 | 备注 |
+| --- | --- | --- |
+| `marp: true` | 启用 Marp | 模板必须保留。 |
+| `theme` | 指定主题 | 当前常用值是 `tutorial-shtu-red` 和 `report-amber`。 |
+| `size` | 指定画幅 | 主题支持 `16:9` 和 `4:3`，模板默认用 `16:9`。 |
+| `paginate` | 是否显示页码 | 可在单页用 `_paginate: ""` 关闭。 |
+| `math` | 数学公式渲染 | `CS100-r13.md` 使用 `math: mathjax`。 |
+| `header` / `footer` | 默认页眉 / 页脚 | 可在单页用 `_header` / `_footer` 覆盖。 |
+
+### 全局指令和局部指令
+
+Marp 的 HTML 注释指令有作用域区别：
+
+```markdown
+<!-- backgroundImage: url(...) -->
+```
+
+不带下划线的是全局指令，会从当前页开始影响后续页面，直到被新的同类指令覆盖。
+
+```markdown
+<!-- _backgroundImage: url(...) -->
+```
+
+带下划线的是当前页局部指令，只影响当前这一页。模板里给单页换背景时优先用局部指令，避免尾页、目录页和后续正文被意外继承。
+
+常用指令：
+
+| 指令 | 作用域 | 用途 |
+| --- | --- | --- |
+| `<!-- _class: ... -->` | 当前页 | 给当前页添加主题 class。可写多个 class，例如 `cover_e cover-logo-white`。 |
+| `<!-- _header: "..." -->` | 当前页 | 覆盖当前页页眉。写 `""` 表示清空。 |
+| `<!-- _footer: "..." -->` | 当前页 | 覆盖当前页页脚。写 `""` 表示清空。 |
+| `<!-- _paginate: "" -->` | 当前页 | 当前页不显示页码。封面、目录、过渡页、尾页常用。 |
+| `<!-- _backgroundImage: url(...) -->` | 当前页 | 只给当前页加背景图。 |
+| `<!-- backgroundImage: url(...) -->` | 后续页面 | 给当前页和后续页面设置背景图。谨慎使用。 |
+
+### 常用页面 class
+
+这些 class 写在页面内的 `_class` 指令里：
+
+```markdown
+---
+<!-- _class: cover_e cover-logo-white -->
+<!-- _paginate: "" -->
+
+# Title
+###### Subtitle
+```
+
+| class | 用途 | 常见模板 |
+| --- | --- | --- |
+| `cover_a` / `cover_b` / `cover_c` / `cover_d` / `cover_e` | 封面版式 | `tutorial.md` 使用 `cover_e`，`report.md` 使用 `cover_b`。 |
+| `cover-logo-white` | 取消封面 logo 的滤镜 | 搭配 `cover_e`，避免白色/反色 logo 处理不符合当前素材。 |
+| `toc_a` | 卡片式目录页 | `tutorial.md`、`report.md`、`CS100-r13.md`。 |
+| `toc_b` | 左侧色带目录页 | `tutorial.md`、`report.md`。 |
+| `trans` | 章节过渡页 | 标题居中，使用主题主色背景；`CS100-r13.md` 大量使用。 |
+| `fixedtitleA` | 固定标题正文页 | 标题保持普通样式，正文从标题下方开始。 |
+| `fixedtitleB` | 标签式固定标题正文页 | 标题变成强调色标签，正文放在 `<div class="div">` 里。 |
+| `lastpage` | 尾页 | 使用 `###### Thank You` 作为主标题，`.icons` 区域放三列信息。 |
+| `navbar` | 顶部导航式页眉 | 适合需要把 header 做成通栏导航的页面。 |
+| `caption` | 图片/图表说明 | 使用 `<div class="caption">...</div>`。 |
+| `footnote` | 带脚注区域的页面 | 上方正文用 `.tdiv`，底部脚注用 `.bdiv`。 |
+
+### 分栏和布局 class
+
+分栏 class 需要配合内部 `<div>` 使用。例子：
+
+```markdown
+---
+## 2. YYY
+<!-- _class: cols-2 -->
+
+<div class="ldiv">
+
+Left content
+
+</div>
+
+<div class="rimg">
+
+![#c](https://...)
+
+</div>
+```
+
+布局 class：
+
+| class | 布局 | 可用内部 class |
+| --- | --- | --- |
+| `cols-2` | 左右 1:1 两栏 | `.ldiv` / `.rdiv`，或 `.limg` / `.rimg`。 |
+| `cols-2-73` | 左 70%，右 30% | `.ldiv` / `.rdiv`，或 `.limg` / `.rimg`。 |
+| `cols-2-64` | 左 60%，右 40% | `.ldiv` / `.rdiv`，或 `.limg` / `.rimg`。 |
+| `cols-2-37` | 左 30%，右 70% | `.ldiv` / `.rdiv`，或 `.limg` / `.rimg`。 |
+| `cols-2-46` | 左 40%，右 60% | `.ldiv` / `.rdiv`，或 `.limg` / `.rimg`。 |
+| `cols-3` | 三栏 | `.ldiv` / `.mdiv` / `.rdiv`，或 `.limg` / `.mimg` / `.rimg`。 |
+| `rows-2` | 上下两行 | `.tdiv` / `.bdiv`，或 `.timg` / `.bimg`。 |
+| `pin-3` | 上方通栏 + 下方两栏 | `.tdiv` / `.ldiv` / `.rdiv`，或对应图片 class。 |
+
+命名约定：
+
+- `ldiv`、`mdiv`、`rdiv`、`tdiv`、`bdiv` 用于文字或普通内容。
+- `limg`、`mimg`、`rimg`、`timg`、`bimg` 用于图片，会自动居中。
+- 图片 alt 里可加 `#c`、`#l`、`#r` 辅助居中、左浮动或右浮动，例如 `![#c](...)`。
+
+### 列表和引用 class
+
+列表 class 用来把普通 Markdown 列表变成主题化列表：
+
+| class | 效果 |
+| --- | --- |
+| `fglass` | 半透明列表卡片。 |
+| `col1_ol_sq` | 单列列表，方形数字标记。 |
+| `col1_ol_ci` | 单列列表，圆形数字标记。 |
+| `cols2_ol_sq` | 双列列表，方形数字标记。 |
+| `cols2_ol_ci` | 双列列表，圆形数字标记。 |
+| `cols2_ul_sq` | 双列列表，方形项目符号。 |
+| `cols2_ul_ci` | 双列列表，圆形项目符号。 |
+
+引用提示框 class 用在包含 blockquote 的页面：
+
+| class | 用途 |
+| --- | --- |
+| `bq-blue` | 蓝色提示框。 |
+| `bq-red` | 红色提示框，tutorial 模板示例使用。 |
+| `bq-green` | 绿色提示框。 |
+| `bq-purple` | 紫色提示框。 |
+| `bq-black` | 黑色提示框。 |
+| `bq-yellow` | 黄色提示框，report 模板示例使用。 |
+
+写法：
+
+```markdown
+---
+## Note
+<!-- _class: bq-red -->
+
+> Title
+>
+> Body text
+```
+
+### 尾页写法
+
+尾页使用 `lastpage`，并清空页眉、页脚和页码：
+
+```markdown
+---
+<!-- _class: lastpage -->
+<!-- _header: "" -->
+<!-- _footer: "" -->
+<!-- _paginate: "" -->
+
+###### Thank You
+
+<div class="icons">
+
+- Heaticy-Marp
+- ShanghaiTech
+- COS theme assets
+
+</div>
+```
+
+`lastpage` 会把 `h6` 放到主视觉区域，把 `.icons` 放到底部三列区域。不要在尾页前使用全局 `backgroundImage`，否则尾页可能继承背景图；单页背景请使用 `_backgroundImage`。
+
 ## 本地主题开发
 
 如果你要修改 `themes/**/*.scss`，先安装依赖，再构建本地 CSS：

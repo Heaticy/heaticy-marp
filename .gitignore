@@ -7,6 +7,7 @@ shared-assets/fonts/noto/
 /*.pdf
 *.log
 review/_tmp_render/
+previews/
 templates/*.html
 templates/*.pdf
 templates/*.png
